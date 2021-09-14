@@ -57,6 +57,8 @@ function getNextId() {
 
 function authenticator(req, res, next) {
   const { authorization } = req.headers;
+  console.log(req)
+  console.log('click')
   if (authorization === token) {
     next();
   } else {
@@ -102,6 +104,7 @@ app.get('/api/friends/:id', authenticator, (req, res) => {
 });
 
 app.post('/api/friends', authenticator, (req, res) => {
+
   const friend = { id: getNextId(), ...req.body };
 
   friends = [...friends, friend];
